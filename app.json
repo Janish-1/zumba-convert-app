@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "zumba-convert-app",
+    "slug": "zumba-convert-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
