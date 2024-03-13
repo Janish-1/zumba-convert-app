@@ -1,89 +1,57 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { WebView } from 'react-native-webview';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import React,{useRef} from 'react';
+import { SafeAreaView, StyleSheet, useColorScheme,View,Dimensions } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import  WebView  from 'react-native-webview';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  const webViewRef = useRef(null);
   return (
-    <WebView source={{ uri: 'http://zumba.ramo.co.in/' }} style={{ flex: 1 }} />
-    );
+    <SafeAreaView style={styles.container}>
+      <View style={styles.webViewContainer}>
+        <WebView
+          startInLoadingState={true}
+          style = {{marginTop: 20, width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
+          originWhitelist={['*']}
+          ref={webViewRef}
+          source={{ uri: 'http://zumba.ramo.co.in' }} // Replace with the initial URL of your website
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+        />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  webViewContainer: {
+    flex: 1,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  webview: {
+    flex: 1,
+    marginTop: -135, // Adjust marginTop to cut pixels from top
   },
-  highlight: {
-    fontWeight: '700',
+  bottomBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#5a5966',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    paddingVertical: 10,
+  },
+  bottomBarItem: {
+    fontSize: 12,
+    color: '#FFFDFD',
+    marginTop: 3,
+    textAlign: 'center',
   },
 });
 
