@@ -1,4 +1,10 @@
 {
-  "name": "Zumba",
-  "displayName": "Zumba"
+  "expo": {
+    "name": "Zumba",
+    "slug": "Zumba",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }
